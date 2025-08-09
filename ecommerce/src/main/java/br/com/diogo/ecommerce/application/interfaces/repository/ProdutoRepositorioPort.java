@@ -7,7 +7,7 @@ import org.springframework.data.domain.Pageable;
 
 import java.util.Optional;
 
-public interface ProdutoRepositorio {
+public interface ProdutoRepositorioPort {
     Page<Produto> findAllPaginated(Pageable pageable);
     Optional<Produto> findById(String id);
     Produto insert(ProdutoDTO produtoDTO);

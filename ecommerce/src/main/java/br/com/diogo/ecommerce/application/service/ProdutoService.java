@@ -2,7 +2,7 @@ package br.com.diogo.ecommerce.application.service;
 
 import br.com.diogo.ecommerce.application.dto.CategoriaDTO;
 import br.com.diogo.ecommerce.application.dto.ProdutoDTO;
-import br.com.diogo.ecommerce.application.interfaces.repository.ProdutoRepositorio;
+import br.com.diogo.ecommerce.application.interfaces.repository.ProdutoRepositorioPort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class ProdutoService {
 
-    private final ProdutoRepositorio produtoRepositorio;
+    private final ProdutoRepositorioPort produtoRepositorio;
 
     public Page<ProdutoDTO> findAllPaginated(Pageable pageable){
         var produtos = produtoRepositorio.findAllPaginated(pageable);

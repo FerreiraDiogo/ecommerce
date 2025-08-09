@@ -1,10 +1,9 @@
-package br.com.diogo.ecommerce.domain.repository;
+package br.com.diogo.ecommerce.infrastructure.repository;
 
 import br.com.diogo.ecommerce.application.dto.ProdutoDTO;
-import br.com.diogo.ecommerce.application.interfaces.repository.ProdutoRepositorio;
+import br.com.diogo.ecommerce.application.interfaces.repository.ProdutoRepositorioPort;
 import br.com.diogo.ecommerce.domain.entity.Categoria;
 import br.com.diogo.ecommerce.domain.entity.Produto;
-import br.com.diogo.ecommerce.infrastructure.repository.IProdutoRepositorio;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -14,7 +13,7 @@ import java.util.Optional;
 
 @Repository
 @RequiredArgsConstructor
-public class ProdutoRepositorioImpl implements ProdutoRepositorio {
+public class ProdutoRepositorioAdapter implements ProdutoRepositorioPort {
 
     private final IProdutoRepositorio produtoRepositorio;
 
