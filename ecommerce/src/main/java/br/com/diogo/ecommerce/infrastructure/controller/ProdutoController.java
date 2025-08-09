@@ -2,6 +2,7 @@ package br.com.diogo.ecommerce.infrastructure.controller;
 
 import br.com.diogo.ecommerce.application.dto.ProdutoDTO;
 import br.com.diogo.ecommerce.application.service.ProdutoService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -29,7 +30,7 @@ public class ProdutoController {
     }
 
     @PostMapping
-    public ResponseEntity<ProdutoDTO> post(@RequestBody ProdutoDTO dto){
+    public ResponseEntity<ProdutoDTO> post(@RequestBody @Valid ProdutoDTO dto){
 
         return ResponseEntity.created(URI.create("")).body(produtoService.insert(dto));
     }
