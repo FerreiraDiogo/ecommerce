@@ -1,13 +1,35 @@
 version: '3.8'
 services:
-  mongo:
-    image: mongo:latest
-    container_name: mongo
-    hostname: mongo
+  mongo-express:
+    image: mongo-express
+    ports:
+      - "8081:8081"
     environment:
-      - MONGO_INITDB_ROOT_USERNAME=user
-      - MONGO_INITDB_ROOT_PASSWORD=pass
+      ME_CONFIG_MONGODB_SERVER: mongoDB
+      ME_CONFIG_BASICAUTH_USERNAME: user
+      ME_CONFIG_BASICAUTH_PASSWORD: pass
+      ME_CONFIG_MONGODB_PORT: 27017
+      ME_CONFIG_MONGODB_ADMINUSERNAME: user
+      ME_CONFIG_MONGODB_ADMINPASSWORD: pass
+    links:
+      - mongoDB
+    networks:
+      - mongo-compose-network
+
+  mongoDB:
+    image: mongo:latest
+    container_name: localhost
+    hostname: mongodb
+    environment:
+       MONGO_INITDB_ROOT_USERNAME: user
+       MONGO_INITDB_ROOT_PASSWORD: pass
     ports:
         - "27017:27017"
     volumes:
         -  /data/db
+    networks:
+      - mongo-compose-network
+
+networks:
+  mongo-compose-network:
+    driver: bridge
