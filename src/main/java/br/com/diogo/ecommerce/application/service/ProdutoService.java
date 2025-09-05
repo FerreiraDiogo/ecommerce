@@ -1,6 +1,7 @@
 package br.com.diogo.ecommerce.application.service;
 
 import br.com.diogo.ecommerce.application.dto.ProdutoDTO;
+import br.com.diogo.ecommerce.application.exception.ProdutoNaoEncontradoException;
 import br.com.diogo.ecommerce.domain.repository.ProdutoRepositorioPort;
 import br.com.diogo.ecommerce.infrastructure.mapper.ProdutoMapper;
 import lombok.RequiredArgsConstructor;
@@ -22,5 +23,10 @@ public class ProdutoService {
 
     public ProdutoDTO insert(ProdutoDTO dto) {
         return produtoMapper.produtoDomainEntityToProdutoDto(produtoRepositorio.insert(dto));
+    }
+
+    public ProdutoDTO obterPorId(String productId) {
+        return produtoMapper.produtoDomainEntityToProdutoDto(produtoRepositorio.findById(productId)
+                .orElseThrow(() -> new ProdutoNaoEncontradoException("Não foi localizado um produto com o ID informado")));
     }
 }

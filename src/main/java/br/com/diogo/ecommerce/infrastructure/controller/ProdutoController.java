@@ -9,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,20 +19,25 @@ import java.net.URI;
 
 
 @RestController
-@RequestMapping("/v1/produto")
+@RequestMapping("/api/v1/produtos")
 @RequiredArgsConstructor
 public class ProdutoController {
 
     private final ProdutoService produtoService;
 
     @GetMapping
-    public ResponseEntity<Page<ProdutoDTO>> getPaginated(@PageableDefault Pageable pageable){
+    public ResponseEntity<Page<ProdutoDTO>> obterPaginado(@PageableDefault Pageable pageable){
         return ResponseEntity.ok().body(produtoService.findAllPaginated(pageable));
     }
 
-    @PostMapping
-    public ResponseEntity<ProdutoDTO> post(@RequestBody @Valid ProdutoDTO dto){
+    @GetMapping("/{productId}")
+    public ResponseEntity<ProdutoDTO> obterPorId(@PathVariable String productId){
+        return ResponseEntity.ok().body(produtoService.obterPorId(productId));
+    }
 
-        return ResponseEntity.created(URI.create("")).body(produtoService.insert(dto));
+    @PostMapping
+    public ResponseEntity<ProdutoDTO> cadastrar(@RequestBody @Valid ProdutoDTO dto){
+        var produto = produtoService.insert(dto);
+        return ResponseEntity.created(URI.create("/"+produto.id())).body(produto);
     }
 }

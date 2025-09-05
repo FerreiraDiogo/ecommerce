@@ -30,4 +30,6 @@ public interface ProdutoMapper {
             @Mapping(target = "tags", source = "tags")
     })
     ProdutoDTO produtoDomainEntityToProdutoDto(Produto produto);
+
+    ProdutoEntity produtoDtoToProdutoEntity(ProdutoDTO produtoDTO);
 }

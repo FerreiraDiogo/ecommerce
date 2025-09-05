@@ -37,12 +37,9 @@ public class ProdutoRepositorioAdapter implements ProdutoRepositorioPort {
 
     @Override
     public Produto insert(ProdutoDTO produtoDTO) {
-        var produto = ProdutoEntity.builder()
-                .preco(produtoDTO.preco())
-                .nome(produtoDTO.nome())
-                .tags(produtoDTO.tags())
-                .categorias(produtoDTO.categorias().stream().map(categoriaMapper::categoriaDtoToCategoriaEntity).toList())
-                .build();
+
+
+        var produto = produtoMapper.produtoDtoToProdutoEntity(produtoDTO);
         return produtoMapper.
                 produtoRepositorioEntityToProdutoDomainEntity(produtoRepositorio.insert(produto));
     }
