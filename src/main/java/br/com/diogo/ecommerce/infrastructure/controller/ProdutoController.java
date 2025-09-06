@@ -19,7 +19,7 @@ import java.net.URI;
 
 
 @RestController
-@RequestMapping("/api/v1/produtos")
+@RequestMapping(("/api/v1/produtos"))
 @RequiredArgsConstructor
 public class ProdutoController {
 
