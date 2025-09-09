@@ -1,7 +1,6 @@
 package br.com.diogo.ecommerce.application.dto;
 
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -21,7 +20,7 @@ public record ProdutoDTO(
         String nome,
 
         @NotNull(message = "O preço é obrigatório")
-        @Min(value = 0L, message = "O preço deve possuir valor positivo")
+        @DecimalMin(value = "0.1", message = "O preço deve possuir valor positivo")
         BigDecimal preco,
 
         List<String> tags,

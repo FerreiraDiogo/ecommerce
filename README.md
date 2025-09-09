@@ -3,7 +3,7 @@ Backend em java para um pseudo e-commerce desenvovlido para fins de prática
 
 **Requisitos Funcionais Detalhados:**
 - **Gestão de Produtos:**
-    - [ ] Endpoint POST /api/v1/products com validação de categoria, preço (> 0), nome (3-100 chars)
+    - [ x ] Endpoint POST /api/v1/products com validação de categoria, preço (> 0), nome (3-100 chars)
     - [ ] Endpoint GET /api/v1/products com paginação (page, size), filtros (categoria, preço min/max, nome)
     - [ ] Upload de imagens (máx 5 por produto, formatos: jpg, png, webp, tamanho < 2MB)
     - [ ] Sistema de tags personalizáveis por produto
